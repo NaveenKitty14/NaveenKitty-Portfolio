@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Portfolio - NaveenKitty</title>
+    <meta name="description" content="Clean project portfolio with dark/light mode featuring 5 key projects in AI/ML and Web Development">
+    
+    <!-- CDN Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #1d4ed8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --bg-color: #ffffff;
+            --surface-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --card-bg: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #475569;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .theme-toggle {
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--surface-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Controls Section */
+        .controls-section {
+            padding: 2rem 0;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 400px;
+            flex: 1;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 3rem 0;
+            min-height: 80vh;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-card.featured {
+            border: 2px solid var(--primary-color);
+        }
+
+        .project-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            z-index: 1;
+        }
+
+        .project-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-badge {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .latest-badge {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .project-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .project-category {
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--text-primary);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.875rem;
+            align-items: center;
+        }
+
+        .project-role {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .project-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+            font-size: 0.875rem;
+        }
+
+        .project-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            background: var(--surface-color);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--primary-color);
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--surface-color);
+            margin-top: auto;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .project-links a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+        }
+
+        .project-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .status-badge.in-progress {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            font-size: 0.75rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            background: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .modal-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .modal-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-date {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .modal-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-features {
+            color: var(--text-secondary);
+            list-style: none;
+        }
+
+        .modal-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-features .fas {
+            color: var(--success-color);
+            margin-top: 0.125rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            text-align: left;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container {
+                max-width: none;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-nav {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-content {
+                padding: 1rem;
+            }
+
+            .project-footer {
+                padding: 0.75rem 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .scroll-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* PDF Export Optimization */
+        @media print {
+            .navbar {
+                position: relative;
+            }
+            
+            .scroll-top {
+                display: none;
+            }
+            
+            .project-card:hover {
+                transform: none;
+            }
+            
+            .project-overlay {
+                display: none;
+            }
+            
+            body {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>NaveenKitty</h1>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Projects</h1>
+                <p class="hero-subtitle">
+                    Showcasing innovative projects in AI/ML and Web Development
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Controls Section -->
+    <section class="controls-section">
+        <div class="container">
+            <div class="controls-row">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search projects...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i>
+                        <span>All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="ai-ml">
+                        <i class="fas fa-robot"></i>
+                        <span>AI/ML</span>
+                    </button>
+                    <button class="filter-btn" data-filter="web-dev">
+                        <i class="fas fa-globe"></i>
+                        <span>Web Dev</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Featured Project 1: Image Colorization -->
+                <div class="project-card featured" data-category="ai-ml" data-name="Image Colorization">
+                    <div class="project-image">
+                        <img src="./assets/graphic.png" alt="Image Colorization" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="https://github.com/NaveenKitty14/Image-Segmentation-Edge-Detection" class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Code</span>
+                                </a>
+                                <button class="btn btn-outline" onclick="openModal('image-colorization')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-badge featured-badge">Featured</div>
+                        <div class="project-category">AI/ML</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Image Colorization</h3>
+                        <div class="project-meta">
+                            <span class="project-role">
+                                <i class="fas fa-user"></i>
+                                DL & Python Developer
+                            </span>
+                            <span class="project-date">
+                                <i class="fas fa-calendar"></i>
+                                Oct 2024 - Nov 2024
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            CNN-based deep learning model for colorizing black-and-white images using Python and OpenCV, 
+                            reconstructing chromatic details with high accuracy.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Project 2: Movie Recommendation System -->
+                <div class="project-card featured" data-category="ai-ml" data-name="Movie Recommendation System">
+                    <div class="project-image">
+                        <img src="./assets/recommendation system.jpg" alt="Movie Recommendation System" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="https://github.com/NaveenKitty14/Recommendation-System" class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Code</span>
+                                </a>
+                                <button class="btn btn-outline" onclick="openModal('movie-recommendation')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-badge featured-badge">Featured</div>
+                        <div class="project-category">AI/ML</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Movie Recommendation System</h3>
+                        <div class="project-meta">
+                            <span class="project-role">
+                                <i class="fas fa-user"></i>
+                                ML & Python Developer
+                            </span>
+                            <span class="project-date">
+                                <i class="fas fa-calendar"></i>
+                                Apr 2024 - May 2024
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Personalized movie recommendation system using IMDb data and hybrid filtering techniques, 
+                            improving accuracy and relevance with machine learning algorithms.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Project 3: Word-Pix -->
+                <div class="project-card featured" data-category="web-dev" data-name="Word-Pix">
+                    <div class="project-image">
+                        <img src="./assets/Word-pix.png" alt="Word-Pix" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="https://github.com/NaveenKitty14/Word-Pix" class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Code</span>
+                                </a>
+                                <button class="btn btn-outline" onclick="openModal('word-pix')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-badge featured-badge">Featured</div>
+                        <div class="project-category">Web Dev</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Word-Pix</h3>
+                        <div class="project-meta">
+                            <span class="project-role">
+                                <i class="fas fa-user"></i>
+                                Full-Stack Developer
+                            </span>
+                            <span class="project-date">
+                                <i class="fas fa-calendar"></i>
+                                Sept 2024 - Oct 2024
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            AI-powered tool transforming text prompts into stunning AI-generated images for creative exploration 
+                            with real-time feedback and customization options.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Gradio</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: NIDS -->
+                <div class="project-card" data-category="ai-ml" data-name="NIDS">
+                    <div class="project-image">
+                        <img src="./assets/network intrusion detection system.jpg" alt="NIDS" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <a href="https://github.com/NaveenKitty14/NIDS-using-Transformer" class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Code</span>
+                                </a>
+                                <button class="btn btn-outline" onclick="openModal('nids')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-badge latest-badge">Latest</div>
+                        <div class="project-category">AI/ML</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">NIDS - Network Intrusion Detection</h3>
+                        <div class="project-meta">
+                            <span class="project-role">
+                                <i class="fas fa-user"></i>
+                                Security Developer
+                            </span>
+                            <span class="project-date">
+                                <i class="fas fa-calendar"></i>
+                                Jan 2025 - Mar 2025
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Real-time Network Intrusion Detection System using Transformer-based deep learning to detect 
+                            malicious activity in live network traffic with advanced threat analysis.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Scapy</span>
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Project Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Project Image" class="modal-image">
+                <div class="modal-grid">
+                    <div class="modal-section">
+                        <h4>Project Details</h4>
+                        <p id="modalRole" class="modal-role"></p>
+                        <p id="modalDate" class="modal-date"></p>
+                        <p id="modalDescription" class="modal-description"></p>
+                    </div>
+                    <div class="modal-section">
+                        <h4>Technologies Used</h4>
+                        <div id="modalTechnologies" class="modal-technologies"></div>
+                        <h4>Key Features</h4>
+                        <ul id="modalFeatures" class="modal-features"></ul>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <a id="modalGithub" href="#" class="btn btn-outline">
+                        <i class="fab fa-github"></i>
+                        <span>View Code</span>
+                    </a>
+                    <a id="modalDemo" href="#" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">NaveenKitty</h3>
+                    <p class="footer-copyright">&copy; 2025 Naveen Prasath. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/NaveenKitty14" class="social-link" target="_blank" rel="noopener" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/naveenprasath144" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:naveenprasath144@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="localhost" class="social-link" target="_blank" rel="noopener" title="Website">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-nav">
+                    <a href="#skills" class="footer-link">Skills</a>
+                    <a href="#projects" class="footer-link">Projects</a>
+                    <a href="#experience" class="footer-link">Experience</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" type="button" title="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Project data
+        const projectsData = {
+            'image-colorization': {
+                title: 'Image Colorization',
+                role: 'DL & Python Developer',
+                date: 'Oct 2024 - Nov 2024',
+                description: 'CNN-based deep learning model for colorizing black-and-white images using Python and OpenCV, reconstructing chromatic details with high accuracy and real-time processing capabilities.',
+                technologies: ['CNN', 'Python', 'OpenCV', 'TensorFlow', 'Deep Learning'],
+                features: [
+                    'Automatic black and white image colorization',
+                    'CNN-based deep learning architecture',
+                    'Real-time image processing',
+                    'High accuracy color reconstruction',
+                    'Batch processing capabilities'
+                ],
+                image: './assets/graphic.png'
+            },
+            'movie-recommendation': {
+                title: 'Movie Recommendation System',
+                role: 'ML & Python Developer',
+                date: 'Apr 2024 - May 2024',
+                description: 'Personalized movie recommendation system using IMDb data and hybrid filtering techniques, improving accuracy and relevance with advanced machine learning algorithms.',
+                technologies: ['TensorFlow', 'Keras', 'Python', 'Scikit-learn', 'Pandas', 'NumPy'],
+                features: [
+                    'Hybrid collaborative and content-based filtering',
+                    'IMDb dataset integration',
+                    'Personalized recommendations',
+                    'Real-time recommendation updates',
+                    'Advanced analytics dashboard'
+                ],
+                image: './assets/recommendation system.jpg'
+            },
+            'word-pix': {
+                title: 'Word-Pix',
+                role: 'Full-Stack Developer',
+                date: 'Sept 2024 - Oct 2024',
+                description: 'AI-powered tool transforming text prompts into stunning AI-generated images for creative exploration with real-time feedback and advanced customization options.',
+                technologies: ['Python', 'Flask', 'Gradio', 'React', 'OpenAI API'],
+                features: [
+                    'Text-to-image generation',
+                    'Real-time preview',
+                    'Multiple AI models integration',
+                    'User-friendly interface',
+                    'Image customization options'
+                ],
+                image: './assets/Word-pix.png'
+            },
+            'nids': {
+                title: 'NIDS - Network Intrusion Detection',
+                role: 'Security Developer',
+                date: 'Jan 2025 - Mar 2025',
+                description: 'Real-time Network Intrusion Detection System using Transformer-based deep learning to detect malicious activity in live network traffic with advanced threat analysis.',
+                technologies: ['PyTorch', 'Scapy', 'Transformers', 'Python', 'Tkinter'],
+                features: [
+                    'Real-time network monitoring',
+                    'Transformer-based detection',
+                    'Malicious activity identification',
+                    'Dashboard interface',
+                    'Alert system integration'
+                ],
+                image: './assets/network intrusion detection system.jpg'
+            }
+        };
+
+        // Global variables
+        let allProjects = [];
+        let filteredProjects = [];
+        let currentFilter = 'all';
+
+        // Theme management
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Initialize theme
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            initializeProjects();
+            initializeSearch();
+            initializeFilters();
+            initializeCounters();
+            initializeScrollTop();
+        });
+
+        // Initialize projects
+        function initializeProjects() {
+            allProjects = Array.from(document.querySelectorAll('.project-card'));
+            filteredProjects = [...allProjects];
+            showProjects();
+        }
+
+        // Initialize search
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                
+                if (query === '') {
+                    filteredProjects = allProjects.filter(project => {
+                        if (currentFilter === 'all') return true;
+                        return project.getAttribute('data-category') === currentFilter;
+                    });
+                } else {
+                    filteredProjects = allProjects.filter(project => {
+                        const title = project.querySelector('.project-title').textContent.toLowerCase();
+                        const description = project.querySelector('.project-description').textContent.toLowerCase();
+                        const technologies = Array.from(project.querySelectorAll('.tech-tag')).map(tag => tag.textContent.toLowerCase());
+                        
+                        const matchesSearch = title.includes(query) || 
+                                            description.includes(query) || 
+                                            technologies.some(tech => tech.includes(query));
+                        
+                        const matchesFilter = currentFilter === 'all' || 
+                                            project.getAttribute('data-category') === currentFilter;
+                        
+                        return matchesSearch && matchesFilter;
+                    });
+                }
+                
+                showProjects();
+            });
+        }
+
+        // Initialize filters
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects
+                    currentFilter = filter;
+                    filterProjects();
+                });
+            });
+        }
+
+        // Filter projects
+        function filterProjects() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            
+            filteredProjects = allProjects.filter(project => {
+                const matchesFilter = currentFilter === 'all' || 
+                                    project.getAttribute('data-category') === currentFilter;
+                
+                if (searchQuery === '') {
+                    return matchesFilter;
+                }
+                
+                const title = project.querySelector('.project-title').textContent.toLowerCase();
+                const description = project.querySelector('.project-description').textContent.toLowerCase();
+                const technologies = Array.from(project.querySelectorAll('.tech-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matchesSearch = title.includes(searchQuery) || 
+                                    description.includes(searchQuery) || 
+                                    technologies.some(tech => tech.includes(searchQuery));
+                
+                return matchesFilter && matchesSearch;
+            });
+            
+            showProjects();
+        }
+
+        // Show projects
+        function showProjects() {
+            allProjects.forEach(project => {
+                project.style.display = 'none';
+            });
+            
+            filteredProjects.forEach((project, index) => {
+                project.style.display = 'block';
+            });
+        }
+
+        // Initialize counters
+        function initializeCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            const animateCounter = (element) => {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        element.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        element.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            };
+            
+            setTimeout(() => {
+                counters.forEach(counter => {
+                    animateCounter(counter);
+                });
+            }, 500);
+        }
+
+        // Initialize scroll to top
+        function initializeScrollTop() {
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            // Show/hide scroll to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to top functionality
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Modal functions
+        function openModal(projectId) {
+            const project = projectsData[projectId];
+            if (!project) return;
+            
+            const modal = document.getElementById('projectModal');
+            
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalRole').textContent = project.role;
+            document.getElementById('modalDate').textContent = project.date;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalImage').alt = project.title;
+            
+            // Populate technologies
+            const modalTechnologies = document.getElementById('modalTechnologies');
+            modalTechnologies.innerHTML = '';
+            project.technologies.forEach(tech => {
+                const techTag = document.createElement('span');
+                techTag.className = 'tech-tag';
+                techTag.textContent = tech;
+                modalTechnologies.appendChild(techTag);
+            });
+            
+            // Populate features
+            const modalFeatures = document.getElementById('modalFeatures');
+            modalFeatures.innerHTML = '';
+            project.features.forEach(feature => {
+                const featureItem = document.createElement('li');
+                featureItem.innerHTML = `<i class="fas fa-check"></i>${feature}`;
+                modalFeatures.appendChild(featureItem);
+            });
+            
+            // Update action buttons
+            const modalGithub = document.getElementById('modalGithub');
+            const modalDemo = document.getElementById('modalDemo');
+            
+            if (project.github) {
+                modalGithub.href = project.github;
+                modalGithub.style.display = 'inline-flex';
+            } else {
+                modalGithub.style.display = 'none';
+            }
+            
+            if (project.demo) {
+                modalDemo.href = project.demo;
+                modalDemo.style.display = 'inline-flex';
+            } else {
+                modalDemo.style.display = 'none';
+            }
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
